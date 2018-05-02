@@ -3,8 +3,8 @@ Sub aaDetailSheets()
 
     Call purgeDetail
     
-    If range("trade_detail").Value = "Yes" Then
-        If Sheets("Data").range("dataTable[[#Totals],[CONTRACT ITEM]]").Value > 0 Then
+    If Range("trade_detail").Value = "Yes" Then
+        If Sheets("Data").Range("dataTable[[#Totals],[CONTRACT ITEM]]").Value > 0 Then
             Call progressIndicator_Begin("Contract Item Detail Report")
             Call DetailTransfer("tradeDetail")
             Call sortAndFormat
@@ -18,8 +18,8 @@ Sub aaDetailSheets()
         End If
     End If
     
-    If range("uniformat_item_detail").Value = "Yes" Then
-        If Sheets("Data").range("dataTable[[#Totals],[UNI L2]]").Value > 0 Then
+    If Range("uniformat_item_detail").Value = "Yes" Then
+        If Sheets("Data").Range("dataTable[[#Totals],[UNI L2]]").Value > 0 Then
             Call progressIndicator_Begin("UniFormat Detail Report")
             Call DetailTransfer("uniDetail")
             Call sortAndFormat
@@ -33,8 +33,8 @@ Sub aaDetailSheets()
         End If
     End If
     
-    If range("breakouts_detail").Value = "Yes" Then
-        If Sheets("Data").range("dataTable[[#Totals],[BRK]]").Value > 0 Then
+    If Range("breakouts_detail").Value = "Yes" Then
+        If Sheets("Data").Range("dataTable[[#Totals],[BRK]]").Value > 0 Then
             Call progressIndicator_Begin("Break-Outs Detail Report")
             Call DetailTransfer("brkDetail")
             Call sortAndFormat
@@ -48,8 +48,8 @@ Sub aaDetailSheets()
         End If
     End If
 
-    If range("alternates_detail").Value = "Yes" Then
-        If Sheets("Data").range("dataTable[[#Totals],[ALT]]").Value > 0 Then
+    If Range("alternates_detail").Value = "Yes" Then
+        If Sheets("Data").Range("dataTable[[#Totals],[ALT]]").Value > 0 Then
             Call progressIndicator_Begin("Alternates Detail Report")
             Call DetailTransfer("altDetail")
             Call sortAndFormat
@@ -108,17 +108,17 @@ End Sub
 
 Sub detailTabs()
     
-'    If range("alternates_detail").Value = "Yes" _
-'    And Sheets("Data").range("dataTable[[#Totals],[ALT]]").Value > 0 Then
-'        Sheets("altDetail").Select
-'        Sheets("altDetail").Move After:=Sheets("altSum")
-'        With ActiveWorkbook.Sheets("altDetail").Tab
-'            .ThemeColor = xlThemeColorAccent4
-'            .TintAndShade = 0.599993896298105
-'        End With
-'    End If
-    If range("breakouts_detail").Value = "Yes" _
-    And Sheets("Data").range("dataTable[[#Totals],[BRK]]").Value > 0 Then
+    If Range("alternates_detail").Value = "Yes" _
+    And Sheets("Data").Range("dataTable[[#Totals],[ALT]]").Value > 0 Then
+        Sheets("altDetail").Select
+        Sheets("altDetail").Move After:=Sheets("altSum")
+        With ActiveWorkbook.Sheets("altDetail").Tab
+            .ThemeColor = xlThemeColorAccent4
+            .TintAndShade = 0.599993896298105
+        End With
+    End If
+    If Range("breakouts_detail").Value = "Yes" _
+    And Sheets("Data").Range("dataTable[[#Totals],[BRK]]").Value > 0 Then
         Sheets("brkDetail").Select
         Sheets("brkDetail").Move After:=Sheets("brkSum")
         With ActiveWorkbook.Sheets("brkDetail").Tab
@@ -126,8 +126,8 @@ Sub detailTabs()
             .TintAndShade = 0.599993896298105
         End With
     End If
-    If range("trade_detail").Value = "Yes" And _
-    Sheets("Data").range("dataTable[[#Totals],[CONTRACT ITEM]]").Value > 0 Then
+    If Range("trade_detail").Value = "Yes" And _
+    Sheets("Data").Range("dataTable[[#Totals],[CONTRACT ITEM]]").Value > 0 Then
         Sheets("tradeDetail").Select
         Sheets("tradeDetail").Move After:=Sheets("BIM-8")
         With ActiveWorkbook.Sheets("tradeDetail").Tab
@@ -135,8 +135,8 @@ Sub detailTabs()
             .TintAndShade = 0.399975585192419
         End With
     End If
-    If range("uniformat_item_detail").Value = "Yes" And _
-    Sheets("Data").range("dataTable[[#Totals],[UNI L2]]").Value > 0 Then
+    If Range("uniformat_item_detail").Value = "Yes" And _
+    Sheets("Data").Range("dataTable[[#Totals],[UNI L2]]").Value > 0 Then
         Sheets("uniDetail").Select
         Sheets("uniDetail").Move After:=Sheets("BIM-8")
         With ActiveWorkbook.Sheets("uniDetail").Tab

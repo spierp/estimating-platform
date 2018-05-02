@@ -6,7 +6,7 @@ pb.Repaint
 'CREATE HEADINGS
 pb.AddCaption "Creating Level 1 Headings... (this might take a minute)"
 Dim x As Long, lastrow As Long
-lastrow = Cells(Rows.count, 16).End(xlUp).Row
+lastrow = Cells(Rows.Count, 16).End(xlUp).Row
 
 For x = lastrow To 7 Step -1
     If Cells(x, 1).Font.Bold = False _
@@ -57,10 +57,10 @@ pb.AddProgress 30
 pb.AddCaption "Deleting extra code references..."
 
 Dim dat As Variant
-Dim rng As range
+Dim rng As Range
 Dim i As Long
 
-Set rng = range("$A$7", Cells(Rows.count, "C").End(xlUp)).Cells
+Set rng = Range("$A$7", Cells(Rows.Count, "C").End(xlUp)).Cells
 dat = rng.Value
 For i = LBound(dat, 1) To UBound(dat, 1)
     If dat(i, 1) <> "" And dat(i, 2) <> "" And dat(i, 3) <> "" Then
@@ -72,6 +72,10 @@ Next
 rng.Value = dat
 
 Erase dat
+Range("A6").Value = "CODE"
+Range("B6").Value = "C2"
+Range("C6").Value = "C3"
+
 pb.AddProgress 5
 
 'ADD ROW NUMBERS
@@ -80,7 +84,7 @@ pb.AddCaption "Adding row numbers..."
 Dim lineCount As Integer
 lineCount = 0
 
-Set rng = range("$A$7", Cells(Rows.count, "L").End(xlUp)).Cells
+Set rng = Range("$A$7", Cells(Rows.Count, "L").End(xlUp)).Cells
 dat = rng.Value
 For i = LBound(dat, 1) To UBound(dat, 1)
     If dat(i, 12) <> "" Then
@@ -90,5 +94,7 @@ For i = LBound(dat, 1) To UBound(dat, 1)
 Next
 rng.Value = dat
 pb.AddProgress 5
+
+
 
 End Sub

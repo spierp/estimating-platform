@@ -8,21 +8,21 @@ pb.Repaint
 pb.AddCaption "Calculating Subtotals..."
 
     Dim zonenumber As Integer
-    zonenumber = WorksheetFunction.CountA(range("Q6:AY6")) / 2
-    range("A6").CurrentRegion.Select
+    zonenumber = WorksheetFunction.CountA(Range("Q6:AY6")) / 2
+    Range("A6").CurrentRegion.Select
     
     If zonenumber = 12 Then
         Selection.Subtotal GroupBy:=1, Function:=xlSum, TotalList:=Array(16, 29, 30 _
             , 31, 32, 33, 34, 35, 36, 37, 38, 39, 40), Replace:=False, PageBreaks:=False, _
             SummaryBelowData:=True
-        If Worksheets("Dashboard").range("subtotals_L2") = "Yes" Then
-            range("A6").CurrentRegion.Select
+        If Worksheets("Dashboard").Range("subtotals_L2") = "Yes" Then
+            Range("A6").CurrentRegion.Select
             Selection.Subtotal GroupBy:=2, Function:=xlSum, TotalList:=Array(16, 29, 30 _
                 , 31, 32, 33, 34, 35, 36, 37, 38, 39, 40), Replace:=False, PageBreaks:=False, _
                 SummaryBelowData:=True
         End If
-        If Worksheets("Dashboard").range("subtotals_L3") = "Yes" Then
-            range("A6").CurrentRegion.Select
+        If Worksheets("Dashboard").Range("subtotals_L3") = "Yes" Then
+            Range("A6").CurrentRegion.Select
             Selection.Subtotal GroupBy:=3, Function:=xlSum, TotalList:=Array(16, 29, 30 _
                 , 31, 32, 33, 34, 35, 36, 37, 38, 39, 40), Replace:=False, PageBreaks:=False, _
                 SummaryBelowData:=True
@@ -32,14 +32,14 @@ pb.AddCaption "Calculating Subtotals..."
         Selection.Subtotal GroupBy:=1, Function:=xlSum, TotalList:=Array(16, 28, 29 _
             , 30, 31, 32, 33, 34, 35, 36, 37, 38), Replace:=False, PageBreaks:=False, _
             SummaryBelowData:=True
-        If Worksheets("Dashboard").range("subtotals_L2") = "Yes" Then
-            range("A6").CurrentRegion.Select
+        If Worksheets("Dashboard").Range("subtotals_L2") = "Yes" Then
+            Range("A6").CurrentRegion.Select
             Selection.Subtotal GroupBy:=2, FFunction:=xlSum, TotalList:=Array(16, 28, 29 _
                 , 30, 31, 32, 33, 34, 35, 36, 37, 38), Replace:=False, PageBreaks:=False, _
                 SummaryBelowData:=True
         End If
-        If Worksheets("Dashboard").range("subtotals_L3") = "Yes" Then
-            range("A6").CurrentRegion.Select
+        If Worksheets("Dashboard").Range("subtotals_L3") = "Yes" Then
+            Range("A6").CurrentRegion.Select
             Selection.Subtotal GroupBy:=3, Function:=xlSum, TotalList:=Array(16, 28, 29 _
                 , 30, 31, 32, 33, 34, 35, 36, 37, 38), Replace:=False, PageBreaks:=False, _
                 SummaryBelowData:=True
@@ -49,14 +49,14 @@ pb.AddCaption "Calculating Subtotals..."
         Selection.Subtotal GroupBy:=1, Function:=xlSum, TotalList:=Array(16, 27, 28 _
             , 29, 30, 31, 32, 33, 34, 35, 36), Replace:=False, PageBreaks:=False, _
             SummaryBelowData:=True
-        If Worksheets("Dashboard").range("subtotals_L2") = "Yes" Then
-            range("A6").CurrentRegion.Select
+        If Worksheets("Dashboard").Range("subtotals_L2") = "Yes" Then
+            Range("A6").CurrentRegion.Select
             Selection.Subtotal GroupBy:=2, Function:=xlSum, TotalList:=Array(16, 27, 28 _
                 , 29, 30, 31, 32, 33, 34, 35, 36), Replace:=False, PageBreaks:=False, _
                 SummaryBelowData:=True
         End If
-        If Worksheets("Dashboard").range("subtotals_L3") = "Yes" Then
-            range("A6").CurrentRegion.Select
+        If Worksheets("Dashboard").Range("subtotals_L3") = "Yes" Then
+            Range("A6").CurrentRegion.Select
             Selection.Subtotal GroupBy:=3, Function:=xlSum, TotalList:=Array(16, 27, _
                 28, 29, 30, 31, 32, 33, 34, 35, 36), Replace:=False, PageBreaks:=False, _
                 SummaryBelowData:=True
@@ -66,14 +66,14 @@ pb.AddCaption "Calculating Subtotals..."
         Selection.Subtotal GroupBy:=1, Function:=xlSum, TotalList:=Array(16, 26, 27 _
             , 28, 29, 30, 31, 32, 33, 34), Replace:=False, PageBreaks:=False, _
             SummaryBelowData:=True
-        If Worksheets("Dashboard").range("subtotals_L2") = "Yes" Then
-            range("A6").CurrentRegion.Select
+        If Worksheets("Dashboard").Range("subtotals_L2") = "Yes" Then
+            Range("A6").CurrentRegion.Select
             Selection.Subtotal GroupBy:=2, Function:=xlSum, TotalList:=Array(16, 26, 27 _
                 , 28, 29, 30, 31, 32, 33, 34), Replace:=False, PageBreaks:=False, _
                 SummaryBelowData:=True
         End If
-        If Worksheets("Dashboard").range("subtotals_L3") = "Yes" Then
-            range("A6").CurrentRegion.Select
+        If Worksheets("Dashboard").Range("subtotals_L3") = "Yes" Then
+            Range("A6").CurrentRegion.Select
             Selection.Subtotal GroupBy:=3, Function:=xlSum, TotalList:=Array(16, 26, 27 _
                 , 28, 29, 30, 31, 32, 33, 34), Replace:=False, PageBreaks:=False, _
                 SummaryBelowData:=True
@@ -83,14 +83,14 @@ pb.AddCaption "Calculating Subtotals..."
         Selection.Subtotal GroupBy:=1, Function:=xlSum, TotalList:=Array(16, 25, 26 _
             , 27, 28, 29, 30, 31, 32), Replace:=False, PageBreaks:=False, _
             SummaryBelowData:=True
-        If Worksheets("Dashboard").range("subtotals_L2") = "Yes" Then
-            range("A6").CurrentRegion.Select
+        If Worksheets("Dashboard").Range("subtotals_L2") = "Yes" Then
+            Range("A6").CurrentRegion.Select
             Selection.Subtotal GroupBy:=2, Function:=xlSum, TotalList:=Array(16, 25, 26 _
                 , 27, 28, 29, 30, 31, 32), Replace:=False, PageBreaks:=False, _
                 SummaryBelowData:=True
         End If
-        If Worksheets("Dashboard").range("subtotals_L3") = "Yes" Then
-            range("A6").CurrentRegion.Select
+        If Worksheets("Dashboard").Range("subtotals_L3") = "Yes" Then
+            Range("A6").CurrentRegion.Select
             Selection.Subtotal GroupBy:=3, Function:=xlSum, TotalList:=Array(16, 25, 26 _
                 , 27, 28, 29, 30, 31, 32), Replace:=False, PageBreaks:=False, _
                 SummaryBelowData:=True
@@ -100,14 +100,14 @@ pb.AddCaption "Calculating Subtotals..."
         Selection.Subtotal GroupBy:=1, Function:=xlSum, TotalList:=Array(16, 24, 25 _
             , 26, 27, 28, 29, 30), Replace:=False, PageBreaks:=False, _
             SummaryBelowData:=True
-        If Worksheets("Dashboard").range("subtotals_L2") = "Yes" Then
-            range("A6").CurrentRegion.Select
+        If Worksheets("Dashboard").Range("subtotals_L2") = "Yes" Then
+            Range("A6").CurrentRegion.Select
             Selection.Subtotal GroupBy:=2, Function:=xlSum, TotalList:=Array(16, 24, 25 _
                 , 26, 27, 28, 29, 30), Replace:=False, PageBreaks:=False, _
                 SummaryBelowData:=True
         End If
-        If Worksheets("Dashboard").range("subtotals_L3") = "Yes" Then
-            range("A6").CurrentRegion.Select
+        If Worksheets("Dashboard").Range("subtotals_L3") = "Yes" Then
+            Range("A6").CurrentRegion.Select
             Selection.Subtotal GroupBy:=3, Function:=xlSum, TotalList:=Array(16, 24, 25 _
                 , 26, 27, 28, 29, 30), Replace:=False, PageBreaks:=False, _
                 SummaryBelowData:=True
@@ -117,14 +117,14 @@ pb.AddCaption "Calculating Subtotals..."
         Selection.Subtotal GroupBy:=1, Function:=xlSum, TotalList:=Array(16, 23, 24 _
             , 25, 26, 27, 28), Replace:=False, PageBreaks:=False, _
             SummaryBelowData:=True
-        If Worksheets("Dashboard").range("subtotals_L2") = "Yes" Then
-            range("A6").CurrentRegion.Select
+        If Worksheets("Dashboard").Range("subtotals_L2") = "Yes" Then
+            Range("A6").CurrentRegion.Select
             Selection.Subtotal GroupBy:=2, Function:=xlSum, TotalList:=Array(16, 23, 24 _
                 , 25, 26, 27, 28), Replace:=False, PageBreaks:=False, _
                 SummaryBelowData:=True
         End If
-        If Worksheets("Dashboard").range("subtotals_L3") = "Yes" Then
-            range("A6").CurrentRegion.Select
+        If Worksheets("Dashboard").Range("subtotals_L3") = "Yes" Then
+            Range("A6").CurrentRegion.Select
             Selection.Subtotal GroupBy:=3, Function:=xlSum, TotalList:=Array(16, 23, 24 _
                 , 25, 26, 27, 28), Replace:=False, PageBreaks:=False, _
                 SummaryBelowData:=True
@@ -134,14 +134,14 @@ pb.AddCaption "Calculating Subtotals..."
         Selection.Subtotal GroupBy:=1, Function:=xlSum, TotalList:=Array(16, 22, 23 _
             , 24, 25, 26), Replace:=False, PageBreaks:=False, _
             SummaryBelowData:=True
-        If Worksheets("Dashboard").range("subtotals_L2") = "Yes" Then
-        range("A6").CurrentRegion.Select
+        If Worksheets("Dashboard").Range("subtotals_L2") = "Yes" Then
+        Range("A6").CurrentRegion.Select
         Selection.Subtotal GroupBy:=2, Function:=xlSum, TotalList:=Array(16, 22, 23 _
             , 24, 25, 26), Replace:=False, PageBreaks:=False, _
             SummaryBelowData:=True
         End If
-        If Worksheets("Dashboard").range("subtotals_L3") = "Yes" Then
-        range("A6").CurrentRegion.Select
+        If Worksheets("Dashboard").Range("subtotals_L3") = "Yes" Then
+        Range("A6").CurrentRegion.Select
         Selection.Subtotal GroupBy:=3, Function:=xlSum, TotalList:=Array(16, 22, 23 _
             , 24, 25, 26), Replace:=False, PageBreaks:=False, _
             SummaryBelowData:=True
@@ -151,14 +151,14 @@ pb.AddCaption "Calculating Subtotals..."
         Selection.Subtotal GroupBy:=1, Function:=xlSum, TotalList:=Array(16, 21, 22 _
             , 23, 24), Replace:=False, PageBreaks:=False, _
             SummaryBelowData:=True
-        If Worksheets("Dashboard").range("subtotals_L2") = "Yes" Then
-            range("A6").CurrentRegion.Select
+        If Worksheets("Dashboard").Range("subtotals_L2") = "Yes" Then
+            Range("A6").CurrentRegion.Select
             Selection.Subtotal GroupBy:=2, Function:=xlSum, TotalList:=Array(16, 21, 22 _
                 , 23, 24), Replace:=False, PageBreaks:=False, _
                 SummaryBelowData:=True
         End If
-        If Worksheets("Dashboard").range("subtotals_L3") = "Yes" Then
-        range("A6").CurrentRegion.Select
+        If Worksheets("Dashboard").Range("subtotals_L3") = "Yes" Then
+        Range("A6").CurrentRegion.Select
         Selection.Subtotal GroupBy:=3, Function:=xlSum, TotalList:=Array(16, 21, 22 _
             , 23, 24), Replace:=False, PageBreaks:=False, _
             SummaryBelowData:=True
@@ -168,14 +168,14 @@ pb.AddCaption "Calculating Subtotals..."
         Selection.Subtotal GroupBy:=1, Function:=xlSum, TotalList:=Array(16, 20, 21 _
             , 22), Replace:=False, PageBreaks:=False, _
             SummaryBelowData:=True
-        If Worksheets("Dashboard").range("subtotals_L2") = "Yes" Then
-            range("A6").CurrentRegion.Select
+        If Worksheets("Dashboard").Range("subtotals_L2") = "Yes" Then
+            Range("A6").CurrentRegion.Select
             Selection.Subtotal GroupBy:=2, Function:=xlSum, TotalList:=Array(16, 20, 21 _
                 , 22), Replace:=False, PageBreaks:=False, _
                 SummaryBelowData:=True
         End If
-        If Worksheets("Dashboard").range("subtotals_L3") = "Yes" Then
-            range("A6").CurrentRegion.Select
+        If Worksheets("Dashboard").Range("subtotals_L3") = "Yes" Then
+            Range("A6").CurrentRegion.Select
             Selection.Subtotal GroupBy:=3, Function:=xlSum, TotalList:=Array(16, 20, 21 _
                 , 22), Replace:=False, PageBreaks:=False, _
                 SummaryBelowData:=True
@@ -184,13 +184,13 @@ pb.AddCaption "Calculating Subtotals..."
     ElseIf zonenumber = 2 Then
         Selection.Subtotal GroupBy:=1, Function:=xlSum, TotalList:=Array(16, 19, 20), Replace:=False, PageBreaks:=False, _
             SummaryBelowData:=True
-        If Worksheets("Dashboard").range("subtotals_L2") = "Yes" Then
-            range("A6").CurrentRegion.Select
+        If Worksheets("Dashboard").Range("subtotals_L2") = "Yes" Then
+            Range("A6").CurrentRegion.Select
             Selection.Subtotal GroupBy:=2, Function:=xlSum, TotalList:=Array(16, 19, 20), Replace:=False, PageBreaks:=False, _
                 SummaryBelowData:=True
         End If
-        If Worksheets("Dashboard").range("subtotals_L3") = "Yes" Then
-            range("A6").CurrentRegion.Select
+        If Worksheets("Dashboard").Range("subtotals_L3") = "Yes" Then
+            Range("A6").CurrentRegion.Select
             Selection.Subtotal GroupBy:=3, Function:=xlSum, TotalList:=Array(16, 19, 20), Replace:=False, PageBreaks:=False, _
                 SummaryBelowData:=True
         End If
@@ -198,13 +198,13 @@ pb.AddCaption "Calculating Subtotals..."
     ElseIf zonenumber = 1 Then
         Selection.Subtotal GroupBy:=1, Function:=xlSum, TotalList:=Array(16), Replace:=False, PageBreaks:=False, _
             SummaryBelowData:=True
-        If Worksheets("Dashboard").range("subtotals_L2") = "Yes" Then
-            range("A6").CurrentRegion.Select
+        If Worksheets("Dashboard").Range("subtotals_L2") = "Yes" Then
+            Range("A6").CurrentRegion.Select
             Selection.Subtotal GroupBy:=2, Function:=xlSum, TotalList:=Array(16), Replace:=False, PageBreaks:=False, _
                 SummaryBelowData:=True
         End If
-        If Worksheets("Dashboard").range("subtotals_L3") = "Yes" Then
-            range("A6").CurrentRegion.Select
+        If Worksheets("Dashboard").Range("subtotals_L3") = "Yes" Then
+            Range("A6").CurrentRegion.Select
             Selection.Subtotal GroupBy:=3, Function:=xlSum, TotalList:=Array(16), Replace:=False, PageBreaks:=False, _
                 SummaryBelowData:=True
             Columns("Q:R").Select
@@ -212,27 +212,18 @@ pb.AddCaption "Calculating Subtotals..."
         End If
     End If
 
-    range("A6").CurrentRegion.Select
+    Range("A6").CurrentRegion.Select
     Selection.ClearOutline
     
 
 'DELETE GRAND TOTALS
 Dim x As Long, lastrow As Long
-lastrow = Cells(Rows.count, 16).End(xlUp).Row
+lastrow = Cells(Rows.Count, 16).End(xlUp).Row
 For x = lastrow To 1 Step -1
     If Cells(x, 1).Value = "Grand Total" Or Cells(x, 2) = "Grand Total" Or Cells(x, 3) = "Grand Total" Then
         Rows(x).Delete
     End If
 Next x
-
-
-'MARK ZERO AS EXCLUDED
-'lastrow = Cells(Rows.Count, 16).End(xlUp).Row
-'For x = 7 To lastrow Step 1
-'    If Cells(x, 16).Value = "0" Then
-'        Cells(x, 16).Value = "excl."
-'    End If
-'Next x
 
 pb.AddProgress 10
 

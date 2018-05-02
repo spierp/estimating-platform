@@ -4,30 +4,24 @@ pb.Repaint
 pb.AddCaption "Formatting Table..."
 Rows(6).HorizontalAlignment = xlCenter
 
-'WRAP TEXT
-Columns("L:L").Select
-    With Selection
-        .WrapText = True
-    End With
-    
 'INDENT DETAIL
-
-Dim dat As Variant
-Dim rng As range
-Dim i As Long
-
-Set rng = range("$J$7", Cells(Rows.count, "L").End(xlUp)).Cells
-dat = rng.Value
-For i = LBound(dat, 1) To UBound(dat, 1)
-    If dat(i, 1) = "S" Then
-    ElseIf dat(i, 1) = "H" Then
-    ElseIf dat(i, 1) = "*" Then
-        dat(i, 3) = "     " & dat(i, 3)
-    ElseIf dat(i, 3) <> "" Then
-        dat(i, 3) = "     " & dat(i, 3)
-    End If
-Next
-rng.Value = dat
+'Dim dat As Variant
+'Dim rng As Range
+'Dim i As Long
+'
+'Set rng = Range("$J$7", Cells(Rows.Count, "L").End(xlUp)).Cells
+'dat = rng.Value
+'For i = LBound(dat, 1) To UBound(dat, 1)
+'    If dat(i, 1) = "S" Then
+'    ElseIf dat(i, 1) = "H" Then
+'    ElseIf dat(i, 1) = "B" Then
+'    ElseIf dat(i, 1) = "*" Then
+'        'dat(i, 3) = "     " & dat(i, 3)
+'    ElseIf dat(i, 3) <> "" Then
+'        'dat(i, 3) = "     " & dat(i, 3)
+'    End If
+'Next
+'rng.Value = dat
 
 'Range("L7").Select
 'Do Until WorksheetFunction.CountA(ActiveCell.Range("A1:A10")) < 1
@@ -44,15 +38,15 @@ rng.Value = dat
 '    ActiveCell.Offset(1, 0).Range("A1").Select
 'Loop
 
-'Format Table
-With range("B6:C6").Font
+'FORMAT TABLE
+With Range("B6:C6").Font
     .ThemeColor = xlThemeColorAccent5
     .TintAndShade = -0.249977111117893
 End With
 
-range("A8").HorizontalAlignment = xlLeft
+Range("A8").HorizontalAlignment = xlLeft
 
-range("A6").CurrentRegion.Select
+Range("A6").CurrentRegion.Select
 Selection.VerticalAlignment = xlVAlignCenter
 
 Dim tbl As ListObject
@@ -61,7 +55,7 @@ tbl.TableStyle = "lineitem"
 tbl.Name = ActiveSheet.Name & "Table"
 
     Selection.FormatConditions.Add Type:=xlExpression, Formula1:="=ISNUMBER(SEARCH(""*Total*"",$A6))"
-    Selection.FormatConditions(Selection.FormatConditions.count).SetFirstPriority
+    Selection.FormatConditions(Selection.FormatConditions.Count).SetFirstPriority
 '    Selection.FormatConditions(1).Borders(xlBottom).LineStyle = xlContinuous
 '    With Selection.FormatConditions(1).Interior
 '        .PatternColorIndex = xlAutomatic
@@ -76,7 +70,7 @@ tbl.Name = ActiveSheet.Name & "Table"
     Selection.FormatConditions(1).StopIfTrue = False
 
     Selection.FormatConditions.Add Type:=xlExpression, Formula1:="=ISNUMBER(SEARCH(""*Total*"",$B6))"
-    Selection.FormatConditions(Selection.FormatConditions.count).SetFirstPriority
+    Selection.FormatConditions(Selection.FormatConditions.Count).SetFirstPriority
 '    Selection.FormatConditions(1).Borders(xlBottom).LineStyle = xlContinuous
 '    With Selection.FormatConditions(1).Interior
 '        .PatternColorIndex = xlAutomatic
@@ -91,7 +85,7 @@ tbl.Name = ActiveSheet.Name & "Table"
     Selection.FormatConditions(1).StopIfTrue = False
     
     Selection.FormatConditions.Add Type:=xlExpression, Formula1:="=ISNUMBER(SEARCH(""*Total*"",$C6))"
-    Selection.FormatConditions(Selection.FormatConditions.count).SetFirstPriority
+    Selection.FormatConditions(Selection.FormatConditions.Count).SetFirstPriority
 '    Selection.FormatConditions(1).Borders(xlBottom).LineStyle = xlContinuous
 '    With Selection.FormatConditions(1).Interior
 '        .PatternColorIndex = xlAutomatic
@@ -105,9 +99,9 @@ tbl.Name = ActiveSheet.Name & "Table"
     End With
     Selection.FormatConditions(1).StopIfTrue = False
     
-'subtotal line item
+'SUBTOTAL LINE ITEM
     Selection.FormatConditions.Add Type:=xlExpression, Formula1:="=ISFORMULA(A6)"
-    Selection.FormatConditions(Selection.FormatConditions.count).SetFirstPriority
+    Selection.FormatConditions(Selection.FormatConditions.Count).SetFirstPriority
     Selection.FormatConditions(1).Borders(xlTop).LineStyle = xlContinuous
 '    With Selection.FormatConditions(1).Interior
 '        .PatternColorIndex = xlAutomatic
@@ -116,7 +110,7 @@ tbl.Name = ActiveSheet.Name & "Table"
     Selection.FormatConditions(1).StopIfTrue = False
     
     Selection.FormatConditions.Add Type:=xlExpression, Formula1:="=$G6<>"""""
-    Selection.FormatConditions(Selection.FormatConditions.count).SetFirstPriority
+    Selection.FormatConditions(Selection.FormatConditions.Count).SetFirstPriority
 '    With Selection.FormatConditions(1).Font
 '        .Color = -11250480
 '        .TintAndShade = 0
@@ -124,11 +118,21 @@ tbl.Name = ActiveSheet.Name & "Table"
     Selection.FormatConditions(1).StopIfTrue = False
     
     Selection.FormatConditions.Add Type:=xlExpression, Formula1:="=$G6<>"""""
-    Selection.FormatConditions(Selection.FormatConditions.count).SetFirstPriority
+    Selection.FormatConditions(Selection.FormatConditions.Count).SetFirstPriority
 '    With Selection.FormatConditions(1).Font
 '        .Color = -11250480
 '        .TintAndShade = 0
 '    End With
+    Selection.FormatConditions(1).StopIfTrue = False
+    
+    Dim lastrow As Integer
+    lastrow = Range("A" & Rows.Count).End(xlUp).Row
+    
+    Range("L6:L" & lastrow).FormatConditions.Add Type:=xlExpression, Formula1:="=$J6=""B"""
+    Selection.FormatConditions(Selection.FormatConditions.Count).SetFirstPriority
+    With Selection.FormatConditions(1).Font
+        .Underline = True
+    End With
     Selection.FormatConditions(1).StopIfTrue = False
 
 '    Columns("A:A").Select
@@ -174,23 +178,43 @@ tbl.Name = ActiveSheet.Name & "Table"
 '    Selection.FormatConditions(1).StopIfTrue = False
 pb.AddProgress 3
 
+'WRAP TEXT AND WORK INDENTS
+With Range("L:L")
+    .WrapText = True
+    .InsertIndent 2
+End With
+
+pb.AddCaption "Indenting Section Headers"
+Range("L7").Select
+Do Until ActiveCell.Row > lastrow
+    If ActiveCell.Offset(0, -2).Value = "S" Or ActiveCell.Offset(0, -2).Value = "H" Then
+        ActiveCell.IndentLevel = 0
+        ActiveCell.Font.Underline = True
+    ElseIf ActiveCell.Offset(0, -2).Value = "*" Then
+        ActiveCell.Font.Italic = True
+    End If
+    
+ActiveCell.Offset(1, 0).Range("A1").Select
+Loop
+
+
 ' CREATE SPACER LINES
 pb.AddCaption "Creating spacer lines between Level 1 sections"
-range("A7").Select
-Do Until WorksheetFunction.CountA(ActiveCell.Offset(0, 15).range("A1:A30")) < 1
+Range("A7").Select
+Do Until WorksheetFunction.CountA(ActiveCell.Offset(0, 15).Range("A1:A30")) < 1
     If ActiveCell.Value Like "*Total*" = True Then
         If ActiveSheet.Name = "brkDetail" Or ActiveSheet.Name = "altDetail" Then
             ActiveCell.RowHeight = 22
             ActiveSheet.HPageBreaks.Add Before:=Rows(ActiveCell.Offset(1, 0).Row)
-            ActiveCell.Offset(1, 0).range("A1").Select
+            ActiveCell.Offset(1, 0).Range("A1").Select
         Else: ActiveCell.RowHeight = 22
-            ActiveCell.Offset(1, 0).range("A1").Select
+            ActiveCell.Offset(1, 0).Range("A1").Select
             Selection.EntireRow.Insert , CopyOrigin:=xlFormatFromLeftOrAbove
             ActiveCell.RowHeight = 22
         End If
         
     End If
-ActiveCell.Offset(1, 0).range("A1").Select
+ActiveCell.Offset(1, 0).Range("A1").Select
 Loop
 pb.AddProgress 5
 

@@ -12,22 +12,36 @@ For Each ws In Worksheets
         Application.DisplayAlerts = True
     End If
 Next
-    Sheets.Add Type:=xlWorksheet
-    ActiveSheet.Name = report
+Sheets.Add Type:=xlWorksheet
+ActiveSheet.Name = report
     
 'COPY DATA
 pb.AddCaption "Copying data... "
 pb.AddProgress 5
     Worksheets("Data").ListObjects("dataTable").AutoFilter.ShowAllData
-    Worksheets("Data").ListObjects("dataTable").range.Copy
-    Worksheets(report).range("A6").PasteSpecial _
+    Worksheets("Data").ListObjects("dataTable").Range.Copy
+    Worksheets(report).Range("A6").PasteSpecial _
     Paste:=xlPasteValuesAndNumberFormats, Operation:= _
     xlNone, SkipBlanks:=True, Transpose:=False
     
-    Worksheets("Data").range("Q4:AN4").Copy
-    Worksheets(report).range("Q6").PasteSpecial _
+    Worksheets("Data").Range("Q4:AN4").Copy
+    Worksheets(report).Range("Q6").PasteSpecial _
     Paste:=xlPasteValuesAndNumberFormats, Operation:= _
         xlNone, SkipBlanks:=True, Transpose:=False
+        
+'FORMAT THIS
+With Columns("Q:Q").Borders(xlEdgeLeft)
+    .LineStyle = xlContinuous
+    .ThemeColor = 1
+    .TintAndShade = 0
+    .Weight = xlMedium
+End With
+With Columns("AC:AC").Borders(xlEdgeLeft)
+    .LineStyle = xlContinuous
+    .ThemeColor = 1
+    .TintAndShade = 0
+    .Weight = xlMedium
+End With
         
 'DELETE UNUSED COLUMNS
 Dim x As Long
@@ -66,122 +80,126 @@ ElseIf report = "altDetail" Then
 End If
 
 'SORT DATA
-    range("H6").CurrentRegion.Select
+Range("H6").CurrentRegion.Select
 
-    If WorksheetFunction.CountA(range("J7:J50")) > 2 Then
-        Selection.Sort Key1:=range("J6"), Order1:=xlAscending, Header:=xlGuess, _
+    If WorksheetFunction.CountA(Range("J7:J50")) > 2 Then
+        Selection.Sort Key1:=Range("J6"), Order1:=xlAscending, Header:=xlGuess, _
             OrderCustom:=1, MatchCase:=False, Orientation:=xlTopToBottom, _
             DataOption1:=xlSortNormal
     End If
-    
+
 If report = "uniDetail" Then
-    If WorksheetFunction.CountA(range("I7:I50")) < 2 Then
-        Selection.Sort Key1:=range("H6"), Order1:=xlAscending, Header:=xlGuess, _
+    If WorksheetFunction.CountA(Range("I7:I50")) < 2 Then
+        Selection.Sort Key1:=Range("H6"), Order1:=xlAscending, Header:=xlGuess, _
             OrderCustom:=1, MatchCase:=False, Orientation:=xlTopToBottom, _
             DataOption1:=xlSortNormal
     End If
-    If WorksheetFunction.CountA(range("I7:I50")) > 2 Then
-        Selection.Sort Key1:=range("I6"), Order1:=xlAscending, Header:=xlGuess, _
+    If WorksheetFunction.CountA(Range("I7:I50")) > 2 Then
+        Selection.Sort Key1:=Range("I6"), Order1:=xlAscending, Header:=xlGuess, _
             OrderCustom:=1, MatchCase:=False, Orientation:=xlTopToBottom, _
             DataOption1:=xlSortNormal
     End If
 
 ElseIf report = "tradeDetail" Then
-    If WorksheetFunction.CountA(range("J7:J50")) < 2 Then
-        Selection.Sort Key1:=range("I6"), Order1:=xlAscending, Header:=xlGuess, _
+    If WorksheetFunction.CountA(Range("J7:J50")) < 2 Then
+        Selection.Sort Key1:=Range("I6"), Order1:=xlAscending, Header:=xlGuess, _
             OrderCustom:=1, MatchCase:=False, Orientation:=xlTopToBottom, _
             DataOption1:=xlSortNormal
     End If
-    If WorksheetFunction.CountA(range("H7:H50")) > 2 Then
-        Selection.Sort Key1:=range("H6"), Order1:=xlAscending, Header:=xlGuess, _
+    If WorksheetFunction.CountA(Range("H7:H50")) > 2 Then
+        Selection.Sort Key1:=Range("H6"), Order1:=xlAscending, Header:=xlGuess, _
             OrderCustom:=1, MatchCase:=False, Orientation:=xlTopToBottom, _
             DataOption1:=xlSortNormal
     End If
-    
+
 ElseIf report = "brkDetail" Then
-    If WorksheetFunction.CountA(range("I7:I50")) > 2 Then
-        Selection.Sort Key1:=range("I6"), Order1:=xlAscending, Header:=xlGuess, _
+    If WorksheetFunction.CountA(Range("J7:J50")) > 2 Then
+        Selection.Sort Key1:=Range("J6"), Order1:=xlAscending, Header:=xlGuess, _
             OrderCustom:=1, MatchCase:=False, Orientation:=xlTopToBottom, _
             DataOption1:=xlSortNormal
     End If
-    If WorksheetFunction.CountA(range("H7:H50")) > 2 Then
-        Selection.Sort Key1:=range("H6"), Order1:=xlAscending, Header:=xlGuess, _
+    If WorksheetFunction.CountA(Range("I7:I50")) > 2 Then
+        Selection.Sort Key1:=Range("I6"), Order1:=xlAscending, Header:=xlGuess, _
             OrderCustom:=1, MatchCase:=False, Orientation:=xlTopToBottom, _
             DataOption1:=xlSortNormal
     End If
+        Selection.Sort Key1:=Range("H6"), Order1:=xlAscending, Header:=xlGuess, _
+            OrderCustom:=1, MatchCase:=False, Orientation:=xlTopToBottom, _
+            DataOption1:=xlSortNormal
+          
+
 ElseIf report = "altDetail" Then
-    If WorksheetFunction.CountA(range("J7:J50")) > 2 Then
-        Selection.Sort Key1:=range("J6"), Order1:=xlAscending, Header:=xlGuess, _
+    If WorksheetFunction.CountA(Range("J7:J50")) > 2 Then
+        Selection.Sort Key1:=Range("J6"), Order1:=xlAscending, Header:=xlGuess, _
             OrderCustom:=1, MatchCase:=False, Orientation:=xlTopToBottom, _
             DataOption1:=xlSortNormal
     End If
-    If WorksheetFunction.CountA(range("I7:I50")) > 2 Then
-        Selection.Sort Key1:=range("I6"), Order1:=xlAscending, Header:=xlGuess, _
+    If WorksheetFunction.CountA(Range("I7:I50")) > 2 Then
+        Selection.Sort Key1:=Range("I6"), Order1:=xlAscending, Header:=xlGuess, _
             OrderCustom:=1, MatchCase:=False, Orientation:=xlTopToBottom, _
             DataOption1:=xlSortNormal
     End If
-    If WorksheetFunction.CountA(range("H7:H50")) > 2 Then
-        Selection.Sort Key1:=range("H6"), Order1:=xlAscending, Header:=xlGuess, _
+        Selection.Sort Key1:=Range("H6"), Order1:=xlAscending, Header:=xlGuess, _
             OrderCustom:=1, MatchCase:=False, Orientation:=xlTopToBottom, _
             DataOption1:=xlSortNormal
-    End If
 End If
-    
+
 'COLUMN HEADINGS
-range("L6").Value = "LINE ITEM"
+Range("L6").Value = "LINE ITEM"
+
 If report = "uniDetail" Then
-   range("H6").Value = "CODE"
-   range("I6").Value = "UNI3/4"
-   range("J6").Value = "CI"
+   Range("H6").Value = "CODE"
+   Range("I6").Value = "UNI3/4"
+   Range("J6").Value = "CI"
 ElseIf report = "tradeDetail" Then
-   range("H6").Value = "CODE"
-   range("I6").Value = "UNI2"
-   range("J6").Value = "UNI3/4"
+   Range("H6").Value = "CODE"
+   Range("I6").Value = "UNI2"
+   Range("J6").Value = "UNI3/4"
 ElseIf repoty = "brkDetail" Then
-   range("H6").Value = "BRK"
-   range("I6").Value = "CI"
-   range("J6").Value = "UNI"
+   Range("H6").Value = "BRK"
+   Range("I6").Value = "CI"
+   Range("J6").Value = "UNI"
 ElseIf repoty = "altDetail" Then
-   range("H6").Value = "ALT"
-   range("I6").Value = "CI"
-   range("J6").Value = "UNI"
+   Range("H6").Value = "ALT"
+   Range("I6").Value = "CI"
+   Range("J6").Value = "UNI"
 End If
 
 'REMOVE EXTRA LINES
 If report = "brkDetail" Or report = "altDetail" Then
-Dim toprow As Integer
-Dim bottomrow As Integer
-
-bottomrow = Cells(Rows.count, 16).End(xlUp).Row
-toprow = Cells(Rows.count, 8).End(xlUp).Row + 1
-
-Rows(toprow & ":" & bottomrow).EntireRow.Delete
-pb.AddProgress 4
+    Dim toprow As Integer
+    Dim bottomrow As Integer
+    
+    bottomrow = Cells(Rows.Count, 16).End(xlUp).Row
+    toprow = Cells(Rows.Count, 8).End(xlUp).Row + 1
+    
+    Rows(toprow & ":" & bottomrow).EntireRow.Delete
+    pb.AddProgress 4
+    
+    'REMOVE HASHTAGS ON ALT SUMMARY
+    If report = "altDetail" Then
+        Dim rng As Range, dat As Variant, i As Integer
+        Dim s As String, indexOfDollar As String
+        
+        Set rng = Range("P8:AN" & bottomrow).Cells
+        dat = rng.Value
+        
+        For i = LBound(dat, 1) To UBound(dat, 1)
+            If dat(i, 1) Like "*#*" = True Then
+                s = dat(i, 1)
+                indexOfDollar = InStr(1, s, "$")
+                dat(i, 1) = Right(s, Len(s) - indexOfDollar + 1)
+            End If
+            For y = 2 To 20
+            If dat(i, y) Like "*#*" = True Then
+                s = dat(i, y)
+                indexOfDollar = InStr(1, s, "$")
+                dat(i, y) = Right(s, Len(s) - indexOfDollar + 1)
+            End If
+            Next
+        Next
+        rng.Value = dat
+    End If
 End If
-
-'REMOVE HASHTAGS
-If report = "altDetail" Then
-pb.AddCaption "Removing Hashtags... "
-    range("P7").Select
-    Do Until ActiveCell.range("A1") = ""
-        If ActiveCell.Value Like "*#*" = True Then
-            
-            Dim s As String
-            s = ActiveCell.Value
-
-            Dim indexOfDollar As Integer
-            indexOfDollar = InStr(1, s, "$")
-
-            Dim finalString As String
-            finalString = Right(s, Len(s) - indexOfDollar + 1)
-            
-            ActiveCell.Value = finalString
-            
-        End If
-    ActiveCell.Offset(1, 0).range("A1").Select
-    Loop
-End If
-
-
 
 End Sub

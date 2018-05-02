@@ -2,9 +2,8 @@ Attribute VB_Name = "AMasterSum"
 Sub aaSumSheets()
 '    Call OptimizeCode_Begin
 
-'summary tabs
-
-    If range("trade_summary").Value = "Yes" And _
+'SUMMARY TAB
+    If Range("trade_summary").Value = "Yes" And _
     Worksheets("Data").ListObjects("dataTable").ListColumns(10).Total > 3 Then
         Sheets("tradeSum").Visible = True
         Call progressIndicator_Begin("Trade Summary Report")
@@ -18,7 +17,7 @@ Sub aaSumSheets()
         End If
     End If
     
-    If range("uniformat_L2_summary").Value = "Yes" And _
+    If Range("uniformat_L2_summary").Value = "Yes" And _
     Worksheets("Data").ListObjects("dataTable").ListColumns(8).Total > 3 Then
         Sheets("uni2Sum").Visible = True
         Call progressIndicator_Begin("System Summary Report")
@@ -31,7 +30,8 @@ Sub aaSumSheets()
             Sheets("uni2Sum").Visible = False
         End If
     End If
-    If range("uniformat_L34_summary").Value = "Yes" And _
+    
+    If Range("uniformat_L34_summary").Value = "Yes" And _
     Worksheets("Data").ListObjects("dataTable").ListColumns(9).Total > 3 Then
         Sheets("uni34Sum").Visible = True
         Call progressIndicator_Begin("UniFormat Level 4 Summary Report")
@@ -45,86 +45,37 @@ Sub aaSumSheets()
         End If
     End If
     
-    If range("trade_variance").Value = "Yes" And _
-    Worksheets("Data").ListObjects("dataTable").ListColumns(10).Total > 3 Then
-        Sheets("tradeVar").Visible = True
-        Call progressIndicator_Begin("Trade Variance Report")
-        Call variance("tradeVar")
+    If Range("breakouts_summary").Value = "Yes" And _
+    Worksheets("Data").ListObjects("dataTable").ListColumns(3).Total > 1 Then
+        Sheets("brkSum").Visible = True
+        Call progressIndicator_Begin("Break-Outs Summary")
+        Call sumData("brkSum")
+        Call sumColumns
         Call sumPageSetup
         Call progressIndicator_End
     Else
-        If Sheets("tradeVar").Visible = True Then
-            Sheets("TradeVar").Visible = False
+        If Sheets("brkSum").Visible = True Then
+            Sheets("brkSum").Visible = False
         End If
     End If
     
-'general tabs
-    
-    Call progressIndicator_Begin("General Tabs")
-    pb.AddCaption "Working on general tabs..."
-    If range("coverpage").Value = "Yes" Then
-        pb.AddCaption "Formatting coverpage..."
-        Sheets("cover").Visible = True
-        Call coverPage
+    If Range("alternates_summary").Value = "Yes" And _
+    Worksheets("Data").ListObjects("dataTable").ListColumns(4).Total > 1 Then
+        Sheets("altSum").Visible = True
+        Call progressIndicator_Begin("Alternates Summary")
+        Call sumData("altSum")
+        Call sumColumns
+        Call sumPageSetup
+        Call progressIndicator_End
     Else
-        If Sheets("cover").Visible = True Then
-            Sheets("cover").Visible = False
+        If Sheets("altSum").Visible = True Then
+            Sheets("altSum").Visible = False
         End If
     End If
-    pb.AddProgress 10
-    
-    If range("tablecontents").Value = "Yes" Then
-        pb.AddCaption "Creating Table of Contents..."
-        Sheets("TOC").Visible = True
-        Call tableofContents
-    Else
-        If Sheets("TOC").Visible = True Then
-            Sheets("TOC").Visible = False
-        End If
-    End If
-    pb.AddProgress 20
-    
-    If range("notesquals").Value = "Yes" Then
-        pb.AddCaption "Scrubbing Notes & Quals data..."
-        Sheets("N+Q").Visible = True
-        Call notesQualsCopy
-        pb.AddCaption "Copying Notes & Quals data..."
-        Call notesQualsInsert
-        pb.AddCaption "Formatting Notes & Quals data..."
-        Call notesQualsFormat
-    Else
-        If Sheets("N+Q").Visible = True Then
-            Sheets("N+Q").Visible = False
-        End If
-    End If
-    pb.AddProgress 40
-    
-    If range("bim").Value > "0" Then
-        pb.AddCaption "Creating BIM tabs..."
-        Call BIM
-    Else
-        If Sheets("BIM-1").Visible = True Then
-            Sheets("BIM-1").Visible = False
-        End If
-    End If
-    pb.AddProgress 20
-    
-    If range("executive_summary").Value = "Yes" Then
-        pb.AddCaption "Creating Executive Summary..."
-        Sheets("execSum").Visible = True
-        Call execparts
-        Call execpage
-    Else
-        If Sheets("execSum").Visible = True Then
-            Sheets("execSum").Visible = False
-        End If
-    End If
-    
-    pb.AddProgress 10
-    
-    Call progressIndicator_End
-    
+       
     Worksheets("dashboard").Activate
-    '    Call sumErrorCheck
+    
+'    Call sumErrorCheck
 '    Call OptimizeCode_End
+
 End Sub

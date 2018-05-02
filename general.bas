@@ -4,222 +4,262 @@ Sub tableofContents()
     Sheets("TOC").Cells.Select
     Selection.EntireColumn.Hidden = False
     Selection.EntireRow.Hidden = False
+    Worksheets("TOC").Range("E8:E40").ClearContents
     Cells(1, 1).Select
+
+Dim ws As Worksheet
+
+Dim brkdetailsheet As Boolean
+Dim altdetailsheet As Boolean
+Dim unidetailsheet As Boolean
+Dim tradedetailsheet As Boolean
+Dim vardetailsheet As Boolean
+
+For Each ws In Worksheets
+    If ws.Name = "brkDetail" Then
+        brkdetailsheet = True
+    ElseIf ws.Name = "altDetail" Then
+        altdetailsheet = True
+    ElseIf ws.Name = "tradeDetail" Then
+        tradedetailsheet = True
+    ElseIf ws.Name = "uniDetail" Then
+        unidetailsheet = True
+    ElseIf ws.Name = "varDetail" Then
+        vardetailsheet = True
+    End If
+Next
 
 Dim pageCount As Integer
 pageCount = 1
 
-'coverstuff
-If ThisWorkbook.Names("coverpage").RefersToRange(1, 1).Value = "Yes" Then
+'COVERSTUFF
+If Range("coverpage").Value = "Yes" Then
     Rows("8").EntireRow.Hidden = False
     pageCount = pageCount + 1
 Else
     Rows("8").EntireRow.Hidden = True
 End If
 
-If ThisWorkbook.Names("tablecontents").RefersToRange(1, 1).Value = "Yes" Then
+If Range("tablecontents").Value = "Yes" Then
     Rows("9").EntireRow.Hidden = False
     pageCount = pageCount + 1
 Else
     Rows("9").EntireRow.Hidden = True
 End If
 
-'summaries
-If range("trade_summary").Value = "Yes" Or range("executive_summary").Value = "Yes" _
-Or range("uniformat_L2_summary").Value = Yes Or range("uniformat_L34_summary").Value = Yes Then
+'SUMMARIES
+If Range("trade_summary").Value = "Yes" Or Range("executive_summary").Value = "Yes" _
+Or Range("uniformat_L2_summary").Value = yes Or Range("uniformat_L34_summary").Value = yes Then
     Rows("10").EntireRow.Hidden = False
 Else: Rows("10").EntireRow.Hidden = True
 End If
 
-If range("executive_summary").Value = "Yes" Then
+If Range("executive_summary").Value = "Yes" Then
     Rows("11").EntireRow.Hidden = False
-    range("E11").Value = pageCount
-    pageCount = pageCount + Sheets("execSum").PageSetup.Pages.count
+    Range("E11").Value = pageCount
+    pageCount = pageCount + Sheets("execSum").PageSetup.Pages.Count
 Else: Rows("11").EntireRow.Hidden = True
 End If
 
-If range("trade_summary").Value = "Yes" Then
+If Range("trade_summary").Value = "Yes" Then
     Rows("12").EntireRow.Hidden = False
-    range("E12").Value = pageCount
-    pageCount = pageCount + Sheets("tradeSum").PageSetup.Pages.count
+    Range("E12").Value = pageCount
+    pageCount = pageCount + Sheets("tradeSum").PageSetup.Pages.Count
 Else: Rows("12").EntireRow.Hidden = True
 End If
 
-If range("uniformat_L2_summary").Value = "Yes" Then
+If Range("uniformat_L2_summary").Value = "Yes" Then
     Rows("13").EntireRow.Hidden = False
-    range("E13").Value = pageCount
-    pageCount = pageCount + Sheets("uni2Sum").PageSetup.Pages.count
+    Range("E13").Value = pageCount
+    pageCount = pageCount + Sheets("uni2Sum").PageSetup.Pages.Count
 Else: Rows("13").EntireRow.Hidden = True
 End If
 
-If range("uniformat_L34_summary").Value = "Yes" Then
+If Range("uniformat_L34_summary").Value = "Yes" Then
     Rows("14").EntireRow.Hidden = False
-    range("E14").Value = pageCount
-    pageCount = pageCount + Sheets("uni34Sum").PageSetup.Pages.count
+    Range("E14").Value = pageCount
+    pageCount = pageCount + Sheets("uni34Sum").PageSetup.Pages.Count
 Else: Rows("14").EntireRow.Hidden = True
 End If
 
-'notesquals
-If range("notesquals").Value = "Yes" Then
+'NOTES & QUALS
+If Range("notesquals").Value = "Yes" Then
     Rows("15:16").EntireRow.Hidden = False
-    range("E16").Value = pageCount
-    pageCount = pageCount + Sheets("N+Q").PageSetup.Pages.count
+    Range("E16").Value = pageCount
+    pageCount = pageCount + Sheets("N+Q").PageSetup.Pages.Count
 Else: Rows("15:16").EntireRow.Hidden = True
 End If
 
-'variance
-If range("trade_variance").Value = "Yes" Or range("uniformat_L2_variance").Value = "Yes" Or range("uniformat_L34_variance").Value = "Yes" Then
+'VARIANCE
+If Range("trade_variance").Value = "Yes" Or Range("uniformat_L2_variance").Value = "Yes" Or Range("uniformat_L34_variance").Value = "Yes" Then
     Rows("17").EntireRow.Hidden = False
 Else: Rows("17").EntireRow.Hidden = True
 End If
 
-If range("trade_variance").Value = "Yes" Then
+If Range("trade_variance").Value = "Yes" Then
     Rows("18").EntireRow.Hidden = False
-    range("E18").Value = pageCount
-    pageCount = pageCount + 1 'Sheets("tradeVar").PageSetup.Pages.Count
+    Range("E18").Value = pageCount
+    pageCount = pageCount + Sheets("tradeVar").PageSetup.Pages.Count
 Else: Rows("18").EntireRow.Hidden = True
 End If
 
-If range("uniformat_L2_variance").Value = "Yes" Then
+If Range("uniformat_L2_variance").Value = "Yes" Then
     Rows("19").EntireRow.Hidden = False
-    range("E19").Value = pageCount
-    pageCount = pageCount + 1 'Sheets("uni2Var").PageSetup.Pages.Count
+    Range("E19").Value = pageCount
+    pageCount = pageCount + Sheets("uni2Var").PageSetup.Pages.Count
 Else: Rows("19").EntireRow.Hidden = True
 End If
 
-If range("uniformat_L34_variance").Value = "Yes" Then
+If Range("uniformat_L34_variance").Value = "Yes" Then
     Rows("20").EntireRow.Hidden = False
-    range("E20").Value = pageCount
-    pageCount = pageCount + 1 'Sheets("uni34Var").PageSetup.Pages.Count
+    Range("E20").Value = pageCount
+    pageCount = pageCount + Sheets("uni34Var").PageSetup.Pages.Count
 Else: Rows("20").EntireRow.Hidden = True
 End If
 
-'breakouts and alts
-If range("breakouts_detail").Value = "Yes" Or range("alternates_detail").Value = "Yes" Then
+'BREAK-OUTS & ALTERNATES
+If Range("breakouts_detail").Value = "Yes" Or Range("alternates_detail").Value = "Yes" Or Range("breakouts_summary").Value = "Yes" Then
     Rows("21").EntireRow.Hidden = False
 Else: Rows("21").EntireRow.Hidden = True
 End If
 
-If range("breakouts_detail").Value = "Yes" Then
-    Rows("22:23").EntireRow.Hidden = False
-    range("E22").Value = pageCount
-    pageCount = pageCount + Sheets("brkSum").PageSetup.Pages.count
-    range("E23").Value = pageCount
-    pageCount = pageCount + Sheets("brkDetail").PageSetup.Pages.count
-Else: Rows("22:23").EntireRow.Hidden = True
+'BREAK-OUTS
+
+If Range("breakouts_summary").Value = "Yes" Then
+    Rows("22").EntireRow.Hidden = False
+    Range("E22").Value = pageCount
+    pageCount = pageCount + Sheets("brkSum").PageSetup.Pages.Count
+Else: Rows("22").EntireRow.Hidden = True
 End If
 
-If range("alternates_detail").Value = "Yes" Then
-    Rows("24:25").EntireRow.Hidden = False
-    range("E24").Value = pageCount
-    pageCount = pageCount + 1 'Sheets("altSum").PageSetup.Pages.Count
-    range("E25").Value = pageCount
-    pageCount = pageCount + Sheets("brkDetail").PageSetup.Pages.count
-Else: Rows("24:25").EntireRow.Hidden = True
+If Range("breakouts_detail").Value = "Yes" And brkdetailsheet = True Then
+    Rows("23").EntireRow.Hidden = False
+    Range("E23").Value = pageCount
+    pageCount = pageCount + Sheets("brkDetail").PageSetup.Pages.Count
+Else: Rows("23").EntireRow.Hidden = True
 End If
 
-If range("bim").Value > "0" Then
+'ALTERNATES
+
+If Range("alternates_summary").Value = "Yes" Then
+    Rows("24").EntireRow.Hidden = False
+    Range("E24").Value = pageCount
+    pageCount = pageCount + Sheets("brkSum").PageSetup.Pages.Count
+Else: Rows("24").EntireRow.Hidden = True
+End If
+
+If Range("alternates_detail").Value = "Yes" And altdetailsheet = True Then
+    Rows("25").EntireRow.Hidden = False
+    Range("E25").Value = pageCount
+    pageCount = pageCount + Sheets("altDetail").PageSetup.Pages.Count
+    Else: Rows("25").EntireRow.Hidden = True
+End If
+
+'BIM
+If Range("bim").Value > "0" Then
     Rows("26:27").EntireRow.Hidden = False
-    range("E27").Value = pageCount
+    Range("E27").Value = pageCount
     pageCount = pageCount + 1
 Else: Rows("26:27").EntireRow.Hidden = True
 End If
 
-If range("bim").Value > "1" Then
+If Range("bim").Value > "1" Then
     Rows("28").EntireRow.Hidden = False
-    range("E28").Value = pageCount
+    Range("E28").Value = pageCount
     pageCount = pageCount + 1
 Else: Rows("28").EntireRow.Hidden = True
 End If
 
-If range("bim").Value > "2" Then
+If Range("bim").Value > "2" Then
     Rows("29").EntireRow.Hidden = False
-    range("E29").Value = pageCount
+    Range("E29").Value = pageCount
     pageCount = pageCount + 1
 Else: Rows("29").EntireRow.Hidden = True
 End If
 
-If range("bim").Value > "3" Then
+If Range("bim").Value > "3" Then
     Rows("30").EntireRow.Hidden = False
-    range("E30").Value = pageCount
+    Range("E30").Value = pageCount
     pageCount = pageCount + 1
 Else: Rows("30").EntireRow.Hidden = True
 End If
 
-If range("bim").Value > "4" Then
+If Range("bim").Value > "4" Then
     Rows("31").EntireRow.Hidden = False
-    range("E31").Value = pageCount
+    Range("E31").Value = pageCount
     pageCount = pageCount + 1
 Else: Rows("31").EntireRow.Hidden = True
 End If
 
-If range("bim").Value > "5" Then
+If Range("bim").Value > "5" Then
     Rows("32").EntireRow.Hidden = False
-    range("E32").Value = pageCount
+    Range("E32").Value = pageCount
     pageCount = pageCount + 1
 Else: Rows("32").EntireRow.Hidden = True
 End If
 
-If range("bim").Value > "6" Then
+If Range("bim").Value > "6" Then
     Rows("33").EntireRow.Hidden = False
-    range("E33").Value = pageCount
+    Range("E33").Value = pageCount
     pageCount = pageCount + 1
 Else: Rows("33").EntireRow.Hidden = True
 End If
 
-If range("bim").Value > "7" Then
+If Range("bim").Value > "7" Then
     Rows("34").EntireRow.Hidden = False
-    range("E34").Value = pageCount
+    Range("E34").Value = pageCount
     pageCount = pageCount + 1
 Else: Rows("34").EntireRow.Hidden = True
 End If
 
-If range("bim").Value > "7" Then
-    Rows("34").EntireRow.Hidden = False
-    range("E34").Value = pageCount
-    pageCount = pageCount + 1
-Else: Rows("34").EntireRow.Hidden = True
-End If
-
-If range("trade_detail").Value = "Yes" Or range("uniformat_item_detail").Value = "Yes" Then
+'DETAIL
+If Range("trade_detail").Value = "Yes" Or Range("uniformat_item_detail").Value = "Yes" Or Range("detail_variance").Value = "Yes" Then
     Rows("35").EntireRow.Hidden = False
 Else: Rows("35").EntireRow.Hidden = True
 End If
 
-If range("trade_detail").Value = "Yes" Then
+If Range("trade_detail").Value = "Yes" And tradedetailsheet = True Then
     Rows("36").EntireRow.Hidden = False
-    range("E36").Value = pageCount
-    pageCount = pageCount + Sheets("tradeDetail").PageSetup.Pages.count
+    Range("E36").Value = pageCount
+    pageCount = pageCount + Sheets("tradeDetail").PageSetup.Pages.Count
 Else: Rows("36").EntireRow.Hidden = True
 End If
 
-If range("uniformat_item_detail").Value = "Yes" Then
+If Range("uniformat_item_detail").Value = "Yes" And unidetailsheet = True Then
     Rows("37").EntireRow.Hidden = False
-    range("E37").Value = pageCount
-    pageCount = pageCount + Sheets("uniDetail").PageSetup.Pages.count
+    Range("E37").Value = pageCount
+    pageCount = pageCount + Sheets("uniDetail").PageSetup.Pages.Count
 Else: Rows("37").EntireRow.Hidden = True
 End If
+
+If Range("detail_variance").Value = "Yes" And vardetailsheet = True Then
+    Rows("38").EntireRow.Hidden = False
+    Range("E38").Value = pageCount
+    pageCount = pageCount + Sheets("varDetail").PageSetup.Pages.Count
+Else: Rows("38").EntireRow.Hidden = True
+End If
+
 
 End Sub
 
 Sub coverPage()
 Worksheets("cover").Activate
 
-If range("page_orientation").Value = "Portrait" Then
+If Range("page_orientation").Value = "Portrait" Then
     Columns("B").ColumnWidth = 15
     Columns("C").ColumnWidth = 100
     Rows("36").RowHeight = 160
     Rows("44").RowHeight = 130
-ElseIf range("page_orientation").Value = "Landscape" Then
+ElseIf Range("page_orientation").Value = "Landscape" Then
     Columns("B").ColumnWidth = 45
     Columns("C").ColumnWidth = 108
     Rows("36").RowHeight = 12.75
     Rows("44").RowHeight = 50
 End If
 
-If range("page_size").Value = "Letter" And range("page_orientation").Value = "Landscape" Then
+If Range("page_size").Value = "Letter" And Range("page_orientation").Value = "Landscape" Then
     Columns("B").ColumnWidth = 45
-ElseIf range("page_size").Value = "Tabloid" And range("page_orientation").Value = "Landscape" Then
+ElseIf Range("page_size").Value = "Tabloid" And Range("page_orientation").Value = "Landscape" Then
     Columns("B").ColumnWidth = 85
 End If
 
@@ -239,7 +279,7 @@ Application.PrintCommunication = False
         .TopMargin = Application.InchesToPoints(0.3)
         .BottomMargin = Application.InchesToPoints(0.3)
         .HeaderMargin = Application.InchesToPoints(0.3)
-        .FooterMargin = Application.InchesToPoints(0.15)
+        .FooterMargin = Application.InchesToPoints(0.17)
         .PrintHeadings = False
         .PrintGridlines = False
         .PrintComments = xlPrintNoComments
@@ -277,18 +317,22 @@ End Sub
 Sub notesQualsCopy()
 Attribute notesQualsCopy.VB_ProcData.VB_Invoke_Func = " \n14"
 Sheets("clipboard").Visible = True
+
+Sheets("clipboard").Range("M1:BC25").Clear
+
 Sheets("nqParts").Visible = True
 
 Worksheets("nqParts").Cells.ClearContents
 Worksheets("nqParts").Cells.Borders.LineStyle = xlNone
-If range("page_size").Value = "Tabloid" And range("page_orientation").Value = "Landscape" Then
+
+If Range("page_size").Value = "Tabloid" And Range("page_orientation").Value = "Landscape" Then
     Worksheets("nqParts").Columns("E").ColumnWidth = 120
 Else
     Worksheets("nqParts").Columns("E").ColumnWidth = 84
 End If
 
-Worksheets("N+Q-Data").range("A1").CurrentRegion.Copy
-Worksheets("clipboard").range("M1").PasteSpecial _
+Worksheets("N+Q-Data").Range("A1").CurrentRegion.Copy
+Worksheets("clipboard").Range("M1").PasteSpecial _
     Paste:=xlPasteValues, Operation:= _
     xlNone, SkipBlanks:=True, Transpose:=True
 
@@ -312,7 +356,7 @@ For yy = 13 To 56 Step 1
         Worksheets("nqParts").Cells(nqrow, 2).PasteSpecial _
             Paste:=xlPasteValues, Operation:= _
             xlNone, SkipBlanks:=True, Transpose:=False
-        With Worksheets("nqParts").range(Cells(nqrow, 2).Address(RowAbsolute:=False, ColumnAbsolute:=False) & ":" & _
+        With Worksheets("nqParts").Range(Cells(nqrow, 2).Address(RowAbsolute:=False, ColumnAbsolute:=False) & ":" & _
         Cells(nqrow, 5).Address(RowAbsolute:=False, ColumnAbsolute:=False)).Borders(xlEdgeBottom)
             .LineStyle = xlContinuous
             .ColorIndex = 0
@@ -327,7 +371,7 @@ For yy = 13 To 56 Step 1
                 If Cells(2, zz - 1) = "" And zz - 1 > yy Then
                     zz = 56
                 Else:
-                    rcc = Cells(Rows.count, zz).End(xlUp).Row - 2
+                    rcc = Cells(Rows.Count, zz).End(xlUp).Row - 2
 '                    nqrow = nqrow + 1
                     Cells(2, zz).Copy
                     Worksheets("nqParts").Activate
@@ -336,7 +380,7 @@ For yy = 13 To 56 Step 1
                         xlNone, SkipBlanks:=True, Transpose:=False
                         nqrow = nqrow + 1
                     Worksheets("clipboard").Activate
-                    range(Cells(3, zz).Address & ":" & _
+                    Range(Cells(3, zz).Address & ":" & _
                     Cells(2 + rcc, zz).Address).Copy
                     Worksheets("nqParts").Activate
                     Cells(nqrow, 5).PasteSpecial _
@@ -352,11 +396,11 @@ For yy = 13 To 56 Step 1
 Next yy
 
 Dim dat As Variant
-Dim rng As range
+Dim rng As Range
 Dim i As Long
 
 Worksheets("nqParts").Activate
-Set rng = range("$D$1", Cells(Rows.count, "E").End(xlUp)).Cells
+Set rng = Range("$D$1", Cells(Rows.Count, "E").End(xlUp)).Cells
 dat = rng.Value
 
 For i = LBound(dat, 1) To UBound(dat, 1)
@@ -387,19 +431,19 @@ Dim firstnr As Integer
 Dim lastrw As Integer
 Dim x As Integer
 Dim btm As Integer
-lastrw = Worksheets("nqParts").Cells(Rows.count, "E").End(xlUp).Row
+lastrw = Worksheets("nqParts").Cells(Rows.Count, "E").End(xlUp).Row
 firstnr = 0
 
-If range("page_orientation").Value = "Landscape" And range("page_size").Value = "Letter" Then
-    btm = 700
-ElseIf range("page_orientation").Value = "Landscape" And range("page_size").Value = "Tabloid" Then
-    btm = 890
-ElseIf range("page_orientation").Value = "Portrait" And range("page_size").Value = "Letter" Then
-    btm = 700
+If Range("page_orientation").Value = "Landscape" And Range("page_size").Value = "Letter" Then
+    btm = 690
+ElseIf Range("page_orientation").Value = "Landscape" And Range("page_size").Value = "Tabloid" Then
+    btm = 880
+ElseIf Range("page_orientation").Value = "Portrait" And Range("page_size").Value = "Letter" Then
+    btm = 690
 End If
 
 For x = 1 To lastrw Step 1
-    If Worksheets("nqParts").range("A" & x).top > btm Then
+    If Worksheets("nqParts").Range("A" & x).top > btm Then
         firstnr = (Cells(x, 1).Row)
         'MsgBox (firstnr)
         x = lastrw
@@ -431,28 +475,28 @@ End If
 Dim nqPic1 As Picture
 
 If firstnr = "0" Then
-    Worksheets("nqParts").range("A1:F" & lastrw).Copy
+    Worksheets("nqParts").Range("A1:F" & lastrw).Copy
 Else
-    Worksheets("nqParts").range("A1:F" & firstnr - 1).Copy
+    Worksheets("nqParts").Range("A1:F" & firstnr - 1).Copy
 End If
 
 With Worksheets("N+Q")
     Set nqPic1 = .Pictures.Paste(Link:=True)
     nqPic1.Name = "nqPic1"
-    nqPic1.Left = .range("A8").Left
-    nqPic1.top = .range("A8").top
+    nqPic1.Left = .Range("A8").Left
+    nqPic1.top = .Range("A8").top
 End With
 
 Dim nqPic2 As Picture
 
 If firstnr <> "0" Then
-Worksheets("nqParts").range("A" & firstnr & ":F" & lastrw).Copy
+Worksheets("nqParts").Range("A" & firstnr & ":F" & lastrw).Copy
 
 With Worksheets("N+Q")
     Set nqPic1 = .Pictures.Paste(Link:=True)
     nqPic1.Name = "nqPic2"
-    nqPic1.Left = .range("E8").Left
-    nqPic1.top = .range("E8").top
+    nqPic1.Left = .Range("E8").Left
+    nqPic1.top = .Range("E8").top
 End With
 End If
 
@@ -475,11 +519,11 @@ Sheets("N+Q").Activate
 '    Rows("44").RowHeight = 50
 'End If
 
-If range("page_size").Value = "Letter" And range("page_orientation").Value = "Landscape" Then
+If Range("page_size").Value = "Letter" And Range("page_orientation").Value = "Landscape" Then
     Sheets("N+Q").Columns("C").ColumnWidth = 85
     Sheets("N+Q").Columns("E").ColumnWidth = 85
     Sheets("N+Q").Rows("8:10").RowHeight = 235
-ElseIf range("page_size").Value = "Tabloid" And range("page_orientation").Value = "Landscape" Then
+ElseIf Range("page_size").Value = "Tabloid" And Range("page_orientation").Value = "Landscape" Then
     Sheets("N+Q").Columns("C").ColumnWidth = 130
     Sheets("N+Q").Columns("E").ColumnWidth = 130
     Sheets("N+Q").Rows("8:10").RowHeight = 300
@@ -500,7 +544,7 @@ Application.PrintCommunication = False
         .TopMargin = Application.InchesToPoints(0.3)
         .BottomMargin = Application.InchesToPoints(0.3)
         .HeaderMargin = Application.InchesToPoints(0.3)
-        .FooterMargin = Application.InchesToPoints(0.15)
+        .FooterMargin = Application.InchesToPoints(0.17)
         .PrintHeadings = False
         .PrintGridlines = False
         .PrintComments = xlPrintNoComments
@@ -542,12 +586,12 @@ Dim i As Long
 bimArray = Array("BIM-1", "BIM-2", "BIM-3", "BIM-4", "BIM-5", "BIM-6", "BIM-7", "BIM-8")
 
 For i = 0 To UBound(bimArray)
-    If i < range("bim").Value Then
+    If i < Range("bim").Value Then
         Sheets(bimArray(i)).Visible = True
         
-        If range("page_size").Value = "Letter" And range("page_orientation").Value = "Landscape" Then
+        If Range("page_size").Value = "Letter" And Range("page_orientation").Value = "Landscape" Then
 
-        ElseIf range("page_size").Value = "Tabloid" And range("page_orientation").Value = "Landscape" Then
+        ElseIf Range("page_size").Value = "Tabloid" And Range("page_orientation").Value = "Landscape" Then
             Sheets(bimArray(i)).Columns("C:D").ColumnWidth = 127
             Sheets(bimArray(i)).Rows("8:10").RowHeight = 295
         End If
@@ -567,7 +611,7 @@ For i = 0 To UBound(bimArray)
             .TopMargin = Application.InchesToPoints(0.3)
             .BottomMargin = Application.InchesToPoints(0.3)
             .HeaderMargin = Application.InchesToPoints(0.3)
-            .FooterMargin = Application.InchesToPoints(0.15)
+            .FooterMargin = Application.InchesToPoints(0.17)
             .PrintHeadings = False
             .PrintGridlines = False
             .PrintComments = xlPrintNoComments
@@ -600,6 +644,10 @@ For i = 0 To UBound(bimArray)
             .AlignMarginsHeaderFooter = True
         End With
         Application.PrintCommunication = True
+    ElseIf Range("bim").Value = 0 Then
+        If Sheets(bimArray(i)).Visible = True Then
+            Sheets(bimArray(i)).Visible = False
+        End If
     Else
         If Sheets(bimArray(i)).Visible = True Then
             Sheets(bimArray(i)).Visible = False
@@ -609,3 +657,24 @@ For i = 0 To UBound(bimArray)
 Next i
 
 End Sub
+
+Sub purgeImages()
+
+Dim pic As Variant
+Dim n As Integer
+Dim ws As Worksheet
+For Each ws In ActiveWorkbook.Worksheets
+    For Each pic In ws.Pictures
+        If pic.Name = "nqPic1" Or pic.Name = "nqPic2" Or pic.Name = "full_logo" Or pic.Name = "exec_1" Or pic.Name = "exec_2" Or pic.Name = "exec_3" Or pic.Name = "exec_4" Or pic.Name = "block_logo" Then
+        Else
+            pic.Delete
+            n = n + 1
+        End If
+    Next
+Next
+
+MsgBox (n & " pictures were deleted successfully.")
+
+End Sub
+
+

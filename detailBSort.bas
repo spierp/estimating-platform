@@ -19,12 +19,13 @@ pb.AddCaption "Sorting table columns..."
     Columns("Q:AB").ColumnWidth = 11
     Columns("AC:AN").ColumnWidth = 13
 
+
 'HIDE COLUMNS
     Columns("D:K").EntireColumn.Hidden = True
-    If WorksheetFunction.CountA(range("B7:B10")) < 2 Then
+    If WorksheetFunction.CountA(Range("B7:B10")) < 2 Then
         Columns("B:B").EntireColumn.Hidden = True
     End If
-    If WorksheetFunction.CountA(range("C7:C10")) < 2 Then
+    If WorksheetFunction.CountA(Range("C7:C10")) < 2 Then
         Columns("C:C").EntireColumn.Hidden = True
     End If
    
@@ -47,9 +48,8 @@ pb.AddProgress 10
 'pb 20% complete
 
 'DELETE EXTRA ROWS
-      
 Dim x As Long, lastrow As Long
-lastrow = Cells(Rows.count, 16).End(xlUp).Row
+lastrow = Cells(Rows.Count, 16).End(xlUp).Row
 For x = lastrow To 1 Step -1
     If Cells(x, 1).Value = "" And Cells(x, 2) = "" And Cells(x, 3) = "" And Cells(x, 16) <> "" Then
         Rows(x).Delete

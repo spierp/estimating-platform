@@ -19,11 +19,11 @@ Sub copylineitems(destinationwb As String)
 
 Dim wbThis As Workbook
 Set wbThis = ActiveWorkbook
-Dim rng As range
+Dim rng As Range
 Dim copyrng As String
 
 Set rng = Selection
-nLastRow = rng.Rows.count + rng.Row - 1
+nLastRow = rng.Rows.Count + rng.Row - 1
 nFirstRow = rng.Row
 
 copyrng = "$A$" & nFirstRow & ":$N$" & nLastRow
@@ -31,24 +31,24 @@ copyrng = "$A$" & nFirstRow & ":$N$" & nLastRow
 Application.Workbooks(destinationwb).Worksheets("Data").Activate
 
 Dim rw As Integer
-If range("L6").Value = "" And range("L7").Value = "" Then
+If Range("L6").Value = "" And Range("L7").Value = "" Then
     rw = 6
-Else: rw = range("L6").End(xlDown).Row + 1
+Else: rw = Range("L6").End(xlDown).Row + 1
 End If
 
-Rows(rw + 1 & ":" & rw + rng.Rows.count).Insert Shift:=xlDown
+Rows(rw + 1 & ":" & rw + rng.Rows.Count).Insert Shift:=xlDown
 
 wbThis.Worksheets("Data").Activate
-range(copyrng).Copy
+Range(copyrng).Copy
 Application.DisplayAlerts = False
 Application.Workbooks(destinationwb).Worksheets("Data").Activate
-range("A" & rw + 1).PasteSpecial _
+Range("A" & rw + 1).PasteSpecial _
         Paste:=xlPasteFormulasAndNumberFormats, Operation:= _
         xlNone, SkipBlanks:=False, Transpose:=False
 
 Application.CutCopyMode = False
 
-range("Q" & rw + 1 & ":" & "AB" & rw + rng.Rows.count).ClearContents
+Range("Q" & rw + 1 & ":" & "AB" & rw + rng.Rows.Count).ClearContents
 
 If rw = 6 Then
     Rows(6).Delete
@@ -56,5 +56,5 @@ End If
 
 wbThis.Worksheets("Data").Activate
 Application.DisplayAlerts = True
-MsgBox (rng.Rows.count & " Line Items Copied!")
+MsgBox (rng.Rows.Count & " Line Items Copied!")
 End Sub

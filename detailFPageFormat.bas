@@ -8,22 +8,28 @@ End Function
 Sub pageFormat()
 pb.Repaint
 
-'Add Header Info
+'ADD HEADER INFO
 pb.AddCaption "Creating Page Header..."
-'Insert Logo
+
+'INSERT LOGO
 Worksheets("dashboard").Shapes("full_logo").Copy
-range("A1").Select
+Range("A1").Select
 ActiveSheet.Paste
 Selection.ShapeRange.ScaleHeight 0.5715085068, msoFalse, msoScaleFromTopLeft
 
-rightColumn = Col_Letter(WorksheetFunction.CountA(range("A6:AZ6")))
+If WorksheetFunction.CountA(Range("A6:AZ6")) < 19 Then
+    rightColumn = Col_Letter(16)
+    Columns("Q:R").EntireColumn.Hidden = True
+Else
+    rightColumn = Col_Letter(WorksheetFunction.CountA(Range("A6:AZ6")))
+End If
 
-'Center Header
-range("C1").Value = UCase(ThisWorkbook.Names("project_name").RefersToRange(1, 1).Value)
-range("C2").Value = UCase(ThisWorkbook.Names("client_name").RefersToRange(1, 1).Value)
-range("C3").Value = UCase(ThisWorkbook.Names("estimate_name").RefersToRange(1, 1).Value)
+'CENTER HEADER
+Range("C1").Value = UCase(ThisWorkbook.Names("project_name").RefersToRange(1, 1).Value)
+Range("C2").Value = UCase(ThisWorkbook.Names("client_name").RefersToRange(1, 1).Value)
+Range("C3").Value = UCase(ThisWorkbook.Names("estimate_name").RefersToRange(1, 1).Value)
 
-range("C1:" & rightColumn & "4").Select
+Range("C1:" & rightColumn & "4").Select
 
     With Selection
         .HorizontalAlignment = xlCenterAcrossSelection
@@ -33,32 +39,31 @@ range("C1:" & rightColumn & "4").Select
         .Bold = True
     End With
 
-range("C2").Font.Underline = True
+Range("C2").Font.Underline = True
 
-'Right Header
-
+'RIGHT HEADER
 If ActiveSheet.Name = "altDetail" Then
-    sheetName = "ALTERNATES DETAIL"
+    sheetname = "ALTERNATES DETAIL"
 ElseIf ActiveSheet.Name = "brkDetail" Then
-    sheetName = "BREAK-OUT DETAIL"
+    sheetname = "BREAK-OUT DETAIL"
 ElseIf ActiveSheet.Name = "subDetail" Then
-    sheetName = "SUBCONTRACTOR DETAIL"
+    sheetname = "SUBCONTRACTOR DETAIL"
 ElseIf ActiveSheet.Name = "tradeDetail" Then
-    sheetName = "LINE ITEM DETAIL - SORTED BY TRADE"
+    sheetname = "LINE ITEM DETAIL - SORTED BY TRADE"
 ElseIf ActiveSheet.Name = "uniDetail" Then
-    sheetName = "LINE ITEM DETAIL - SORTED BY SYSTEM"
+    sheetname = "LINE ITEM DETAIL - SORTED BY SYSTEM"
 End If
 
-range(rightColumn & "1:" & rightColumn & "3").Select
+Range(rightColumn & "1:" & rightColumn & "3").Select
     With Selection
         .HorizontalAlignment = xlRight
     End With
 
-range(rightColumn & "1").Value = sheetName
-range(rightColumn & "2").Value = ThisWorkbook.Names("estimate_date").RefersToRange(1, 1).Value
-range(rightColumn & "2").NumberFormat = "dd/mm/yyyy"
-range(rightColumn & "3").Value = 1
-range(rightColumn & "3").Font.Color = RGB(255, 255, 255)
+Range(rightColumn & "1").Value = sheetname
+Range(rightColumn & "2").Value = ThisWorkbook.Names("estimate_date").RefersToRange(1, 1).Value
+Range(rightColumn & "2").NumberFormat = "mm/dd/yyyy"
+Range(rightColumn & "3").Value = 1
+Range(rightColumn & "3").Font.Color = RGB(255, 255, 255)
 
 Rows("1").Select
     With Selection.Font
@@ -70,8 +75,8 @@ ActiveWindow.FreezePanes = True
 Selection.Insert Shift:=xlDown, CopyOrigin:=xlFormatFromLeftOrAbove
 Selection.RowHeight = 12
 
-range("A8:C10").HorizontalAlignment = xlLeft
-
+Range("A8:C10").HorizontalAlignment = xlLeft
+Range("A9:A10").HorizontalAlignment = xlRight
 Columns("A:B").ColumnWidth = 5
 Columns("C").ColumnWidth = 1
 
@@ -95,7 +100,7 @@ Application.PrintCommunication = False
         .TopMargin = Application.InchesToPoints(0.3)
         .BottomMargin = Application.InchesToPoints(0.3)
         .HeaderMargin = Application.InchesToPoints(0.3)
-        .FooterMargin = Application.InchesToPoints(0.15)
+        .FooterMargin = Application.InchesToPoints(0.17)
         .PrintHeadings = False
         .PrintGridlines = False
         .PrintComments = xlPrintNoComments
